@@ -56,10 +56,23 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
-  // create a new tag
-  // DONT TOUCH?
-  res.json({ success:true, hit:"POST tag"})
+// router.post('/', (req, res) => {
+//   // create a new tag
+//   // DONT TOUCH?
+//   res.json({ success:true, hit:"POST tag"})
+// });
+
+router.post('/', async (req, res) => {
+  try {// create a new tag
+  
+  const newTag = await Tag.create({
+    id: req.body.id,
+    tag_name: req.body.tag_name,
+})
+  res.status(200).json(newTag);
+} catch (error) {
+  res.status(507).json(error);
+}
 });
 
 router.put('/:id', (req, res) => {
