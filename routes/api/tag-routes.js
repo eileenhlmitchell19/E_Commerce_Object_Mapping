@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
-
+//-------------- GET TAG ROUTE GET ALL TAGS -----------//
 // get all products
 router.get("/", (req, res) => {
   // find all products
@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
  
   
  
-
+//--------------- GET TAG ROUTE GET ONE TAG -----------//
 
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
@@ -56,6 +56,8 @@ router.get('/:id', async (req, res) => {
 });
 
 
+//--------------- POST TAG ROUTE ------------//
+
 // router.post('/', (req, res) => {
 //   // create a new tag
 //   // DONT TOUCH?
@@ -74,6 +76,8 @@ router.post('/', async (req, res) => {
   res.status(507).json(error);
 }
 });
+
+//--------------- UPDATE PRODUCT ROUTE ------------//
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
@@ -116,27 +120,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// router.delete('/:id', async (req, res) => {
-//   // delete on tag by its `id` value
-
-//   try {
-//     const tagRoutes = await Product.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
-
-//     if (!tagRoutes) {
-//       res.status(404).json({ message: 'No tag routes found!' });
-//       return;
-//     }
-
-//     res.status(200).json(tagRoutes);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-//   res.json({ success:true, hit:"Delete product"})
-// });
+//--------------- DELETE TAG ROUTE ------------//
 
 router.delete("/:id", (req, res) => {
   // delete one product by its `id` value

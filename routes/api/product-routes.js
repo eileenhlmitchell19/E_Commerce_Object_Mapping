@@ -3,6 +3,7 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 
 // The `/api/products` endpoint
 
+//-------------- GET PRODUCT ROUTE GET ALL PRODUCTS -----------//
 // get all products
 router.get("/", (req, res) => {
   // find all products
@@ -28,6 +29,8 @@ router.get("/", (req, res) => {
   })
 });
 
+
+//--------------- GET PRODUCT ROUTE GET ONE PRODUCT -----------//
 // get one product
 router.get("/:id", async (req, res) => {
   // find a single product by its `id`
@@ -57,7 +60,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
+//--------------- POST PRODUCT ROUTE ------------//
 router.post('/', async (req, res) => {
   try {// create a new category
   
@@ -72,58 +75,9 @@ router.post('/', async (req, res) => {
   res.status(507).json(error);
 }
 });
-// create new product
-// router.post('/',  (req, res) => {
-//   /* req.body should look like this...
-//     {
-//       product_name: "Basketball",
-//       price: 200.00,
-//       stock: 3,
-//       tagIds: [1, 2, 3, 4]
-//     }
-//   */
-//  // DONT TOUCH
 
-//   Product.create(req.body)
 
-//   .then((product) => {
-//       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-//     //     try {
-//     // const productData = await Product.findAll({
-//     //   include: [
-//     //     {
-//     //       model: Product,
-//     //       Category,
-//     //       Tag,
-//     //       ProductTag
-//     //     }
-//     //   ],
-//     // });
-//       if (req.body.tagIds.length) {
-//         const productTagIdArr = req.body.tagIds.map((tag_id) => {
-//           return {
-//             product_id: product.id,
-//             tag_id,
-//           };
-//         });
-//         return ProductTag.bulkCreate(productTagIdArr);
-//       }
-//     });
-//       // if no product tags, just respond
-//       // res.status(200).json(product);
-//     })
-//     .then((productTagIds) => {
-
-//       console.log('productTagIds', productTagIds)
-
-//       JSON.stringify(productTagIds)
-//       // res.status(200)
-//     })
-
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(400).json(err);
-//     });
+//--------------- UPDATE PRODUCT ROUTE ------------//
 
 // update product
 router.put("/:id", (req, res) => {
@@ -167,6 +121,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
+//--------------- DELETE PRODUCT ROUTE ------------//
 router.delete("/:id", (req, res) => {
   // delete one product by its `id` value
   
