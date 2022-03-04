@@ -57,6 +57,21 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+router.post('/', async (req, res) => {
+  try {// create a new category
+  
+  const newProd = await Product.create({
+    id: req.body.id,
+    product_name: req.body.product_name,
+    price: req.body.price,
+    stock: req.body.stock,
+    category_id: req.body.category_id})
+  res.status(200).json(newProd);
+} catch (error) {
+  res.status(507).json(error);
+}
+});
 // create new product
 // router.post('/',  (req, res) => {
 //   /* req.body should look like this...
